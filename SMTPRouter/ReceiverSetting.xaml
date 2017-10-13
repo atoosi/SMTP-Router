@@ -1,0 +1,59 @@
+﻿<Window x:Class="SMTPRouter.ReceiverSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SMTPRouter"
+        mc:Ignorable="d"
+        Title="ReceiverSetting" Height="345.241" Width="758.108">
+    <Grid Margin="0,0,2,0">
+        <Label x:Name="ListenAddresslabel" Content="Listen Address" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="102"/>
+        <TextBox x:Name="ListenAddresstextBox" HorizontalAlignment="Left" Height="18" Margin="117,22,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ListenPortlabel" Content="Listen Port" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,51,0,0" Height="25" Width="102"/>
+        <TextBox x:Name="ListenPorttextBox" HorizontalAlignment="Left" Height="18" Margin="117,54,0,0" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ReceiveTimeOutlabel" Content="Receive Time Out" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ReceiveTimeOuttextBox" HorizontalAlignment="Left" Height="18" Margin="117,86,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="HostNamelabel" Content="Host Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,115,0,0" Height="25" Width="77"/>
+        <TextBox x:Name="HostNametextBox" HorizontalAlignment="Left" Height="18" Margin="117,122,0,0" TextWrapping="Wrap" Text="p49.questinc.com" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="MaxDataSizelabel" Content="Max Data Size" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MaxMessageslabel" Content="Max Messages" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="StorePathlabel" Content="Store Path" HorizontalAlignment="Left" Margin="256,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MaxSessionslabel" Content="Max Sessions" HorizontalAlignment="Left" Margin="256,51,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LogPathlabel" Content="LogPath" HorizontalAlignment="Left" Margin="256,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.55,0.096"/>
+        <TextBox x:Name="MaxDataSizetextBox" HorizontalAlignment="Left" Height="18" Margin="117,218,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MaxMessagestextBox" HorizontalAlignment="Left" Height="18" Margin="117,250,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="StorePathtextBox" HorizontalAlignment="Left" Height="18" Margin="373,22,0,0" TextWrapping="Wrap" Text="c:\" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MaxSessionstextBox" HorizontalAlignment="Left" Height="18" Margin="373,54,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LogPathtextBox" HorizontalAlignment="Left" Height="18" Margin="373,86,0,0" TextWrapping="Wrap" Text="c:\" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="VerboseLogginglabel" Content="Verbose Logging" HorizontalAlignment="Left" Margin="256,115,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="DoEarlyTalklabel" Content="Do Early Talk" HorizontalAlignment="Left" Margin="256,147,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="RWLproviderslabel" Content="RWLproviders" HorizontalAlignment="Left" Margin="256,182,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="RBLproviderslabel" Content="RBLproviders" HorizontalAlignment="Left" Margin="256,214,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MaxSmtpErrorslabel" Content="Max Smtp Errors" HorizontalAlignment="Left" Margin="256,246,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="RWLproviderstextBox" HorizontalAlignment="Left" Height="18" Margin="362,185,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="RBLproviderstextBox" HorizontalAlignment="Left" Height="18" Margin="362,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MaxSmtpErrorstextBox" HorizontalAlignment="Left" Height="18" Margin="362,250,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MaxSmtpNooptextBox" HorizontalAlignment="Left" Height="18" Margin="618,22,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="MaxSmtpNooplabel" Content="Max Smtp Noop" HorizontalAlignment="Left" Margin="516,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MaxSmtpVrfylabel" Content="Max Smtp Vrfy" HorizontalAlignment="Left" Margin="516,50,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MaxSmtpRcptlabel" Content="Max Smtp Rcpt" HorizontalAlignment="Left" Margin="516,82,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="BannerDelaylabel" Content="Banner Delay" HorizontalAlignment="Left" Margin="516,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="MaxSmtpVrfytextBox" HorizontalAlignment="Left" Height="18" Margin="618,54,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MaxSmtpRcpttextBox" HorizontalAlignment="Left" Height="18" Margin="618,86,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="BannerDelaytextBox" HorizontalAlignment="Left" Height="18" Margin="618,118,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ErrorDelay" Content="Error Delay" HorizontalAlignment="Left" Margin="516,147,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LocalDomainslabel" Content="Local Domains" HorizontalAlignment="Left" Margin="516,182,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LocalMailBoxeslabel" Content="Local Mail Boxes" HorizontalAlignment="Left" Margin="516,214,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ErrorDelaytextBox" HorizontalAlignment="Left" Height="18" Margin="618,147,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LocalDomainstextBox" HorizontalAlignment="Left" Height="18" Margin="618,185,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LocalMailBoxestextBox" HorizontalAlignment="Left" Height="18" Margin="618,222,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="DoTempFaillabel" Content="Do Temp Fail" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="StoreDatalabel" Content="Store Data" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="DoTempFailcheckBox" Content="" HorizontalAlignment="Left" Margin="117,154,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="StoreDatacheckBox" Content="" HorizontalAlignment="Left" Margin="117,188,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="VerboseLoggingcheckBox" Content="" HorizontalAlignment="Left" Margin="373,122,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="DoEarlyTalkcheckBox" Content="" HorizontalAlignment="Left" Margin="373,147,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="okbutton" Content="OK" HorizontalAlignment="Left" Margin="338,284,0,0" VerticalAlignment="Top" Width="75" Click="okbutton_Click"/>
+
+    </Grid>
+</Window>

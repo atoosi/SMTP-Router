@@ -1,0 +1,34 @@
+﻿<Window x:Class="SMTPRouter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SMTPRouter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="369.865" Width="535.405">
+    <Grid HorizontalAlignment="Left" Width="515">
+        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="166" Margin="10,10,0,0" VerticalAlignment="Top" Width="497">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <GroupBox x:Name="groupBox1" Header="Reciever" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Height="128" Width="245">
+            <Grid>
+                <Button x:Name="button1" Content="Stop" HorizontalAlignment="Left" Margin="85,76,0,0" VerticalAlignment="Top" Width="62" Click="button1_Click" />
+                <Button x:Name="button2" Content="Start" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="62" Click="button2_Click"/>
+                <Button x:Name="button3" Content="Setting" HorizontalAlignment="Left" Margin="161,76,0,0" VerticalAlignment="Top" Width="62" Click="button3_Click"/>
+
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="groupBox2" Header="Sender" HorizontalAlignment="Left" Margin="264,181,0,0" VerticalAlignment="Top" Height="128" Width="245"/>
+
+
+
+
+
+    </Grid>
+</Window>

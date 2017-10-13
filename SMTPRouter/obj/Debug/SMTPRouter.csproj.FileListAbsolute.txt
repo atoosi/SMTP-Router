@@ -1,0 +1,16 @@
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\bin\Debug\SMTPRouter.exe.config
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\bin\Debug\SMTPRouter.exe
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\bin\Debug\SMTPRouter.pdb
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.csprojResolveAssemblyReference.cache
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\MainWindow.g.cs
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\ReceiverSetting.g.cs
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\App.g.cs
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter_MarkupCompile.cache
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter_MarkupCompile.lref
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\MainWindow.baml
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\ReceiverSetting.baml
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.g.resources
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.Properties.Resources.resources
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.csproj.GenerateResource.Cache
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.exe
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.pdb
