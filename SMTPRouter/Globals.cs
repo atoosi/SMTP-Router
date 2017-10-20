@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.IO;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace SMTPRouter
 {
@@ -45,6 +47,11 @@ namespace SMTPRouter
 
         private static object       _lkAppLog = new object();
         private static object       _lkSesLog = new object();
+
+        private static RichTextBox _textBox1 ;
+        private static RichTextBox _textBox2;
+        private static RichTextBox _textBox3;
+
         #endregion
 
         #region "properties"
@@ -243,6 +250,24 @@ namespace SMTPRouter
             set { _localMailBoxes = value; }
         }
 
+        public static RichTextBox richTextBox1
+        {
+            get { return _textBox1; }
+            set { _textBox1 = value; }
+        }
+
+        public static RichTextBox richTextBox2
+        {
+            get { return _textBox2; }
+            set { _textBox2 = value; }
+        }
+        public static RichTextBox richTextBox3
+        {
+            get { return _textBox3; }
+            set { _textBox3 = value; }
+        }
+
+
         #endregion
 
         #region "methods"
@@ -284,6 +309,7 @@ namespace SMTPRouter
         }
 
         // writes a message to console
+        //Parent Function
         public static void writeConsole(string format, params object[] args)
         {
             try {
@@ -296,6 +322,78 @@ namespace SMTPRouter
                 Debug.WriteLine("writeConsole::Exception: " + ex.Message);
             }
         }
+
+
+
+         public static void writeSettingUI(string format, params object[] args)
+        {
+            try {
+               
+                logMessageOnUItoRichTextBox1(format, args);
+              
+            }
+            catch (Exception ex) 
+            { 
+                Debug.WriteLine("writeUI::Exception: " + ex.Message);
+            }
+        }
+
+
+
+        public static void writeLogUI(string format, params object[] args)
+        {
+            try
+            {
+
+                logMessageOnUItoRichTextBox2(format, args);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("writeUI::Exception: " + ex.Message);
+            }
+        }
+
+        public static void logMessageOnUItoRichTextBox1(string format, params object[] args)
+        {
+            lock (_lkAppLog)
+            {
+                try
+                {
+           
+                        _textBox1.Document.Blocks.Add(new Paragraph(new Run(DateTime.UtcNow.ToString("HH:mm:ss.ffff") + " " + string.Format(format, args))));
+                  
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("logMessage::Exception: " + ex.Message);
+                  
+                }
+            }
+        }
+
+
+
+        public static void logMessageOnUItoRichTextBox2(string format, params object[] args)
+        {
+            lock (_lkAppLog)
+            {
+                try
+                {
+
+                    _textBox2.Document.Blocks.Add(new Paragraph(new Run(DateTime.UtcNow.ToString("HH:mm:ss.ffff") + " " + string.Format(format, args))));
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("logMessage::Exception: " + ex.Message);
+
+                }
+            }
+        }
+
+
+
 
         // writes a message to the log file
         public static void logMessage(string format, params object[] args)
@@ -337,6 +435,7 @@ namespace SMTPRouter
                 catch (Exception ex)
                 {
                     writeConsole("logSession::Exception: {0}", ex.Message);
+                    writeLogUI("logSession::Exception: {0}", ex.Message);
                 }
             }
         }

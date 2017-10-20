@@ -207,15 +207,82 @@ namespace SMTPRouter
             AppGlobals.writeConsole("Local mailboxes............: {0}", AppGlobals.LocalMailBoxes.Count);
         }
 
+
+        public void dumpSettingsLive()
+        {
+            // base/network
+              AppGlobals.writeSettingUI("Host name..................: {0}",  AppGlobals.hostName);
+              AppGlobals.writeSettingUI("listen IP..................: {0}",  AppGlobals.listenAddress);
+              AppGlobals.writeSettingUI( "listen port................: {0}", AppGlobals.listenPort);
+              AppGlobals.writeSettingUI( "Receive timeout............: {0}", AppGlobals.receiveTimeout);
+            // hardlimits
+              AppGlobals.writeSettingUI( "Max errors.................: {0}", AppGlobals.maxSmtpErr);
+              AppGlobals.writeSettingUI( "Max NOOP...................: {0}", AppGlobals.maxSmtpNoop);
+              AppGlobals.writeSettingUI( "Max VRFY/EXPN..............: {0}", AppGlobals.maxSmtpVrfy);
+              AppGlobals.writeSettingUI( "Max RCPT TO................: {0}", AppGlobals.maxSmtpRcpt);
+            // sessions
+              AppGlobals.writeSettingUI( "Max messages per session...: {0}", AppGlobals.maxMessages);
+              AppGlobals.writeSettingUI( "Max parallel sessions......: {0}", AppGlobals.maxSessions);
+            // messages
+              AppGlobals.writeSettingUI( "Store message data.........: {0}", AppGlobals.storeData);
+              AppGlobals.writeSettingUI( "Storage path...............: {0}", AppGlobals.storePath);
+              AppGlobals.writeSettingUI( "Max message size...........: {0}", AppGlobals.maxDataSize);
+            // logs
+              AppGlobals.writeSettingUI( "Logfiles path..............: {0}", AppGlobals.logPath);
+              AppGlobals.writeSettingUI( "Verbose logging............: {0}", AppGlobals.logVerbose);
+            // tarpitting
+              AppGlobals.writeSettingUI( "Initial banner delay.......: {0}", AppGlobals.bannerDelay);
+              AppGlobals.writeSettingUI( "Error delay................: {0}", AppGlobals.errorDelay);
+            // filtering/rejecting
+              AppGlobals.writeSettingUI( "Do tempfail (4xx) on DATA..: {0}", AppGlobals.doTempFail);
+              AppGlobals.writeSettingUI( "Check for early talkers....: {0}", AppGlobals.earlyTalkers);
+            // DNS filtering
+              AppGlobals.writeSettingUI( "DNS Whitelists.............: {0}",AppGlobals.whiteLists!=null? AppGlobals.whiteLists.Length:0);
+              AppGlobals.writeSettingUI( "DNS Blacklists.............: {0}", AppGlobals.blackLists!=null?AppGlobals.blackLists.Length:0);
+            // local domains/mailboxes
+              AppGlobals.writeSettingUI( "Local domains..............: {0}", AppGlobals.LocalDomains.Count);
+              AppGlobals.writeSettingUI( "Local mailboxes............: {0}", AppGlobals.LocalMailBoxes.Count);
+          
+        }
+
+
+
+
+
         #endregion
 
-      
+
 
         private void okbutton_Click(object sender, RoutedEventArgs e)
         {
             loadConfig();
             this.Hide();
 
+        }
+
+     
+
+        private void browse2_Click(object sender, RoutedEventArgs e)
+        {
+            Gat.Controls.OpenDialogView openDialog = new Gat.Controls.OpenDialogView();
+            Gat.Controls.OpenDialogViewModel vm = (Gat.Controls.OpenDialogViewModel)openDialog.DataContext;
+            vm.IsDirectoryChooser = true;
+            vm.Show();
+            if (vm.SelectedFilePath != null)
+            LogPathtextBox.Text=vm.SelectedFilePath.ToString();
+
+        }
+
+        private void browse1_Click(object sender, RoutedEventArgs e)
+        {
+            Gat.Controls.OpenDialogView openDialog = new Gat.Controls.OpenDialogView();
+            Gat.Controls.OpenDialogViewModel vm = (Gat.Controls.OpenDialogViewModel)openDialog.DataContext;
+            vm.IsDirectoryChooser = true;
+            vm.Show();
+            if(vm.SelectedFilePath!=null)
+            StorePathtextBox.Text = vm.SelectedFilePath.ToString();
+
+       
         }
     }
 }

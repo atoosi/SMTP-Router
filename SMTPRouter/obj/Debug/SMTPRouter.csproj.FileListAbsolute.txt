@@ -14,3 +14,4 @@ C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRo
 C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.csproj.GenerateResource.Cache
 C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.exe
 C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\obj\Debug\SMTPRouter.pdb
+C:\Users\atoosi.QUESTINC\documents\visual studio 2015\Projects\SMTPRouter\SMTPRouter\bin\Debug\Gat.Controls.OpenDialog.dll

@@ -7,6 +7,8 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace SMTPRouter
 {
@@ -96,6 +98,8 @@ namespace SMTPRouter
         // workareas
         private string              _mailBox = null;                    // mailbox part of a mail address
         private string              _mailDom = null;                    // domain part of a mail address
+        private RichTextBox _textBox2 = null;
+        private RichTextBox _textBox3 = null;                            //richtextbox
         #endregion
 
         #region "instance"
@@ -104,6 +108,8 @@ namespace SMTPRouter
         {
             try
             {
+                this._textBox2 = AppGlobals.richTextBox2;
+                this._textBox3 = AppGlobals.richTextBox3;
                 this._sessCount = AppGlobals.addSession();
                 this._sessionID = AppGlobals.sessionID();
                 this._hostName = AppGlobals.hostName;
@@ -126,11 +132,27 @@ namespace SMTPRouter
                 this._writer.AutoFlush = true;
 
                 AppGlobals.writeConsole("client {0} connected, sess={1}, ID={2}.", this._clientIP, this._sessCount, this._sessionID);
+
+                _textBox2.Dispatcher.BeginInvoke((Action)(() =>
+                {
+
+                    _textBox2.Document.Blocks.Add(new Paragraph(new Run(string.Format("client {0} connected, sess={1}, ID={2}.", this._clientIP, this._sessCount, this._sessionID))));
+
+                }));
                 this._initOk = true;
             }
             catch (Exception ex)
             {
                 AppGlobals.writeConsole("SMTPsession::Exception: " + ex.Message);
+
+                _textBox2.Dispatcher.BeginInvoke((Action)(() =>
+                {
+
+                    _textBox2.Document.Blocks.Add(new Paragraph(new Run(string.Format("SMTPsession::Exception: " + ex.Message))));
+
+                }));
+
+             
                 closeSession();
             }
         }
@@ -208,6 +230,7 @@ namespace SMTPRouter
                     else
                     {
                         storeMailMsg(mailMsg);
+                        showMailMsg(mailMsg);
                         if (AppGlobals.doTempFail) 
                         {
                             // emit a tempfail AFTER storing the mail DATA
@@ -393,6 +416,13 @@ namespace SMTPRouter
                 catch { }
                 if (!string.IsNullOrEmpty(this._clientIP))
                     AppGlobals.writeConsole("client {0} disconnected, sess={1}, ID={2}.", this._clientIP, this._sessCount, this._sessionID);
+
+                _textBox2.Dispatcher.BeginInvoke((Action)(() =>
+                {
+
+                    _textBox2.Document.Blocks.Add(new Paragraph(new Run(string.Format("client {0} disconnected, sess={1}, ID={2}.", this._clientIP, this._sessCount, this._sessionID))));
+
+                }));
             }
             this._initOk = false;
             long sesscount = AppGlobals.removeSession();
@@ -1081,6 +1111,55 @@ namespace SMTPRouter
                 this._msgFile = "write_error";
                 Debug.WriteLine("storeMailMsg::Error: " + ex.Message);
             }
+        }
+
+
+
+        private void showMailMsg(string msgData)
+        {
+            // bump the message counter
+            this._msgCount++;
+          
+
+            try
+            {
+              
+                // add the envelope infos as headers
+               string msg=string.Format("X-FakeSMTP-HostName: {0}", AppGlobals.hostName);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-Sessions: count={0}, id={1}", this._sessCount, this._sessionID);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-MsgCount: {0}", this._msgCount);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-SessDate: {0}", this._startDate.ToString("u"));
+              msg=msg+"\n"+string.Format("X-FakeSMTP-ClientIP: {0}", this._clientIP);
+                if (null != this._dnsListType)
+                  msg=msg+"\n"+string.Format("X-FakeSMTP-DnsList: type={0}, list={1}, result={2}", this._dnsListType, this._dnsListName, this._dnsListValue);
+                else
+                  msg=msg+"\n"+string.Format("X-FakeSMTP-DnsList: type={0}, list={1}, result={2}", "notlisted", "none", "0.0.0.0");
+              msg=msg+"\n"+string.Format("X-FakeSMTP-Helo: {0}", this._heloStr);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-MailFrom: {0}", this._mailFrom);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-RcptCount: {0}", this._rcptTo.Count.ToString());
+                for (int i = 0; i < this._rcptTo.Count; i++)
+                  msg=msg+"\n"+string.Format("X-FakeSMTP-RcptTo-{0}: {1}", i + 1, this._rcptTo[i]);
+              msg=msg+"\n"+string.Format("X-FakeSMTP-Counters: noop={0}, vrfy={1}, err={2}", this._noopCount, this._vrfyCount, this._errCount);
+
+                // write the message data
+              msg=msg+"\n"+string.Format(msgData);
+
+
+                _textBox3.Dispatcher.BeginInvoke((Action)(() =>
+                {
+
+                    _textBox3.Document.Blocks.Add(new Paragraph(new Run(msg)));
+
+                }));
+               
+            }
+            catch (Exception ex)
+            {
+          
+                Debug.WriteLine("storeMailMsg::Error: " + ex.Message);
+             
+            }
+
         }
 
         // if enabled, logs commands and replies

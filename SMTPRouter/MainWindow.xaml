@@ -5,26 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SMTPRouter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="369.865" Width="535.405">
-    <Grid HorizontalAlignment="Left" Width="515">
-        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="166" Margin="10,10,0,0" VerticalAlignment="Top" Width="497">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <GroupBox x:Name="groupBox1" Header="Reciever" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Height="128" Width="245">
+        Title="MainWindow" Height="591.784" Width="950.253">
+    <Grid HorizontalAlignment="Left" Width="515" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <GroupBox x:Name="groupBox1" Header="Reciever" HorizontalAlignment="Left" Margin="16,481,0,0" VerticalAlignment="Top" Height="58" Width="245">
             <Grid>
-                <Button x:Name="button1" Content="Stop" HorizontalAlignment="Left" Margin="85,76,0,0" VerticalAlignment="Top" Width="62" Click="button1_Click" />
-                <Button x:Name="button2" Content="Start" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="62" Click="button2_Click"/>
-                <Button x:Name="button3" Content="Setting" HorizontalAlignment="Left" Margin="161,76,0,0" VerticalAlignment="Top" Width="62" Click="button3_Click"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="142*"/>
+                    <ColumnDefinition Width="91*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="button1" Content="Stop" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top" Width="62" Click="button1_Click" IsEnabled="False" Grid.ColumnSpan="2" />
+                <Button x:Name="button2" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="62" Click="button2_Click" RenderTransformOrigin="0.516,-2.5"/>
+                <Button x:Name="button3" Content="Setting" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Width="62" Click="button3_Click" Grid.Column="1"/>
 
 
             </Grid>
         </GroupBox>
 
-        <GroupBox x:Name="groupBox2" Header="Sender" HorizontalAlignment="Left" Margin="264,181,0,0" VerticalAlignment="Top" Height="128" Width="245"/>
+        <GroupBox x:Name="groupBox2" Header="Sender" HorizontalAlignment="Left" Margin="270,481,0,0" VerticalAlignment="Top" Height="58" Width="245"/>
+        <TabControl x:Name="tabControl" Height="470" Margin="12,6,-409,0" VerticalAlignment="Top">
+            <TabItem Header="Server Setting">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="233*"/>
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="655*"/>
+                    </Grid.ColumnDefinitions>
+                    <RichTextBox x:Name="richTextBox1" HorizontalAlignment="Left" Height="442" VerticalAlignment="Top" Width="906" IsReadOnly="True"  VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Server Log" Margin="2,-2,-2,0" HorizontalAlignment="Left" Width="68">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="richTextBox2" HorizontalAlignment="Left" Height="442" VerticalAlignment="Top" Width="906">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Received Messages">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="richTextBox3" HorizontalAlignment="Left" Height="442" VerticalAlignment="Top" Width="906" IsReadOnly="True"  VerticalScrollBarVisibility="Visible">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
 
 

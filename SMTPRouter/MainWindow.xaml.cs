@@ -28,17 +28,24 @@ namespace SMTPRouter
 
         private static TcpListener listener = null;
         #endregion
-        int task;
+      
         IPAddress listenAddr;
         int listenPort;
 
         public ReceiverSetting settingClass;
 
+        CancellationTokenSource tokenSource;
+             
         public MainWindow()
         {
 
 
             InitializeComponent();
+
+            AppGlobals.richTextBox1 = richTextBox1;
+            AppGlobals.richTextBox2 = richTextBox2;
+            AppGlobals.richTextBox3 = richTextBox3;
+
 
             settingClass = new ReceiverSetting();
 
@@ -59,7 +66,12 @@ namespace SMTPRouter
             button3.IsEnabled = true;
             if (null != listener)
             {
-                try { listener.Stop(); }
+                try { listener.Stop();
+                    tokenSource.Cancel();
+                    AppGlobals.writeConsole("Listening for connections on {0}:{1} is ended.", listenAddr, listenPort);
+                    AppGlobals.writeLogUI("Listening for connections on {0}:{1} is ended.", listenAddr, listenPort);
+
+                      }
                 catch { }
             }
         }
@@ -71,13 +83,23 @@ namespace SMTPRouter
             button2.IsEnabled = false;
             button3.IsEnabled = false;
 
+            richTextBox1.Document.Blocks.Clear();
+            richTextBox2.Document.Blocks.Clear();
+            richTextBox3.Document.Blocks.Clear();
+
+            tokenSource = new CancellationTokenSource();
+            CancellationToken ct = tokenSource.Token;
 
             // load the config
             settingClass.loadConfig();
 
+            settingClass.dumpSettingsLive();
+
             // tell we're starting up and, if verbose, dump config parameters
 
             AppGlobals.writeConsole("{0} {1} starting up (NET {2})", AppGlobals.appName, AppGlobals.appVersion, AppGlobals.appRuntime);
+            AppGlobals.writeLogUI("{0} {1} starting up (NET {2})", AppGlobals.appName, AppGlobals.appVersion, AppGlobals.appRuntime);
+
             if (AppGlobals.logVerbose)
                 settingClass.dumpSettings();
 
@@ -95,21 +117,32 @@ namespace SMTPRouter
             catch (Exception ex)
             {
                 AppGlobals.writeConsole("Listener::Error: " + ex.Message);
+                AppGlobals.writeLogUI("Listener::Error: " + ex.Message);
 
             }
 
             // tell we're ready to accept connections
             AppGlobals.writeConsole("Listening for connections on {0}:{1}", listenAddr, listenPort);
+            AppGlobals.writeLogUI("Listening for connections on {0}:{1}", listenAddr, listenPort);
 
             // run until interrupted (Ctrl-C in our case)
             await Task.Run(() =>
             {
+                ct.ThrowIfCancellationRequested();
                 while (true)
                 {
+
+                    if (ct.IsCancellationRequested)
+                    {
+                        // Clean up here, then...
+                        ct.ThrowIfCancellationRequested();
+                    }
+
                     try
                     {
+                     
                          // wait for an incoming connection, accept it and spawn a thread to handle it
-                         SMTPsession handler = new SMTPsession(listener.AcceptTcpClient());
+                        SMTPsession handler = new SMTPsession(listener.AcceptTcpClient());
                         Thread thread = new System.Threading.Thread(new ThreadStart(handler.handleSession));
 
                         thread.Start();
@@ -120,30 +153,43 @@ namespace SMTPRouter
                          // we got an error
 
                          AppGlobals.writeConsole("Handler::Error: " + ex.Message);
-                         //timeToStop = true;
-                         break;
+                        AppGlobals.writeLogUI("Listening for connections on {0}:{1}", listenAddr, listenPort);
+                        //timeToStop = true;
+                        break;
                     }
-                }
 
 
-            });
+                    }
+
+
+            }, tokenSource.Token);
 
             // finalize
             if (null != listener)
             {
-                try { listener.Stop(); }
+                try {
+                    listener.Stop();
+                         }
                 catch { }
+                finally
+                {
+                    tokenSource.Dispose();
+                    AppGlobals.writeConsole("{0} {1} shutting down (NET {2})", AppGlobals.appName, AppGlobals.appVersion, AppGlobals.appRuntime);
+                    AppGlobals.writeLogUI("{0} {1} shutting down (NET {2})", AppGlobals.appName, AppGlobals.appVersion, AppGlobals.appRuntime);
+
+                }
             }
 
         }
 
+
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            settingClass.Show();
+            settingClass.ShowDialog();
+            settingClass.dumpSettingsLive();
         }
 
-        public static async Task Method1()
-        {
-        }
+      
+
     }
 }
